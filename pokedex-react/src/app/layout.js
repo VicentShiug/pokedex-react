@@ -5,6 +5,7 @@ import StyledComponentsRegistry from '../../lib/registry';
 import { ThemeProvider } from "styled-components";
 import { Poppins } from 'next/font/google';
 import { theme } from './theme';
+import Header from './components/Header/page';
 
 const poppins = Poppins({
   weight: ['300', '400', '500', '700'],
@@ -19,6 +20,7 @@ export default function RootLayout({
       <body className={poppins.className}>
         <ThemeProvider theme={theme}>
           <StyledComponentsRegistry>
+            <Header />
             {children}
             </StyledComponentsRegistry>
         </ThemeProvider>
