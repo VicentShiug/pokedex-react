@@ -6,6 +6,7 @@ import { ThemeProvider } from "styled-components";
 import { Poppins } from 'next/font/google';
 import { theme } from './theme';
 import Header from './components/Header/page';
+import { PokemonProvider } from './context/pokemonContext';
 
 const poppins = Poppins({
   weight: ['300', '400', '500', '700'],
@@ -20,8 +21,10 @@ export default function RootLayout ({
       <body className={poppins.className}>
         <ThemeProvider theme={theme}>
           <StyledComponentsRegistry>
-            <Header />
-            {children}
+            <PokemonProvider>
+              <Header />
+              {children}
+            </PokemonProvider>
           </StyledComponentsRegistry>
         </ThemeProvider>
       </body>

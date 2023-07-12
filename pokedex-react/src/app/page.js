@@ -1,16 +1,29 @@
+import PokemonsPage from "./Page/PokemonPage"
 import { fetchData } from "./api/pokemonsList"
-import Card from "./components/Card/page"
-import { Container } from "./styles"
+import { Pagination } from "./components/Pagination/Pagination"
+import {PokemonStore} from "./store/pokemonStore"
+
+
 
 const App = async () => {
-  const { results } = await fetchData()
+  const { props } = await fetchData(20, 0)
+  const { getState } = PokemonStore
+  
+  PokemonStore.setState({ state: { results: props ?? [] } })
+  const limit = 20
+  const offset = 0
+  // const { props } = fetchData(limit, offset)
+  // const {data} = props
+  // const { count } = data
   return (
-    <Container>
-      {results.length > 0
-        && results.map(({ name, url }) => (
-          <Card propsCard={{name, url}} />
-        ))}
-    </Container>
+    <>
+      <PokemonsPage props={props} />
+      <Pagination
+          props={props}
+          limit={limit}
+          total={400}
+        />
+    </>
   )
 }
 

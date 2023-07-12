@@ -1,8 +1,9 @@
-export async function fetchData () {
-  const res = await fetch('http://127.0.0.1:8000/api/v2/pokemon/?limit=20&offset=0')
+export async function fetchData (limit, offset) {
+  const res = await fetch(`http://127.0.0.1:8000/api/v2/pokemon/?limit=${limit}&offset=${offset}`)
   if (!res.ok) {
     
     throw new Error('Failed to fetch data')
   }
-  return await res.json()
+  const data = await res.json()
+  return {props : {data }}
 }

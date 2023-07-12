@@ -10,7 +10,6 @@ const Card = async ({ propsCard }) => {
   const { other, front_default: defaultImage } = sprites
   const { 'dream_world': typeImage } = other
   const { front_default: pokemonImage } = typeImage
-  console.log(types)
   return (
     <>
       <Container>
